@@ -162,3 +162,20 @@ ul {
   width: 100%;
 }
 /* End Of Global Styles */
+/* End Of Global Styles */
+/* End Of Global Styles */
+
+/* Search */
+/* Favourites */
+/* Meals */
+
+.section-center{
+  padding: 3rem 0;
+  width: var(--view-width);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  gap: 2rem;
+}
+
+/* Modals */
