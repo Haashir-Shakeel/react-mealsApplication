@@ -6,28 +6,34 @@ export const AppContext = React.createContext()
 
 
 export const AppProvider = ({children}) => {
-
+    const [loading, setLoading] = useState(false)
     const [meals, setMeals] = useState([])
 
 
     const randomMealsUrl = 'https://www.themealdb.com/api/json/v1/1/random.php#'
-    const allMealsUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=a#'
+    const allMealsUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=aaaa#'
 
     const fetchMeal =async (url) => {
+        setLoading(true)
         try{
             const {data} = await axios(url)
-            setMeals(data.meals) //destructuring data from respons
+            if (data.meals){
+                setMeals(data.meals)
+            }else{
+                setMeals([])
+            }
+             //destructuring data from respons
         }catch(error){
             console.log(error.response)
         }
-    
+        setLoading(false)
     }
 
     useEffect(()=>{
         fetchMeal(allMealsUrl)
     },[])
     return (
-        <AppContext.Provider value={{ meals }}>
+        <AppContext.Provider value={{ loading, meals }}>
             {children}
         </AppContext.Provider>
     )
