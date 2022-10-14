@@ -15,6 +15,8 @@ export const AppProvider = ({children}) => {
     const randomMealsUrl = 'https://www.themealdb.com/api/json/v1/1/random.php#'
     const allMealsUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 
+    //fetchSearchedMeal
+
     const fetchMeal =async (url) => {
         setLoading(true)
         try{
@@ -31,11 +33,17 @@ export const AppProvider = ({children}) => {
         setLoading(false)
     }
 
+    //fetchRandomMeal
+
+    const fetchRandomMeal = () =>{
+        fetchMeal(randomMealsUrl)
+    }
+
     useEffect(()=>{
         fetchMeal(`${allMealsUrl}${searchTerm}`)
     },[searchTerm])
     return (
-        <AppContext.Provider value={{ loading, meals, setSearchTerm }}>
+        <AppContext.Provider value={{ loading, meals, setSearchTerm, fetchRandomMeal }}>
             {children}
         </AppContext.Provider>
     )
