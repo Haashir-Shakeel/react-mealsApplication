@@ -5,9 +5,11 @@ import Meals from './components/Meals';
 import Modals from './components/Modals';
 
 function App() {
+
+
   return (
     <main>
-      {/* <Search/> */}
+      <Search/>
       {/* <Favourites/> */}
       <Meals/>
       {/* <Modals/> */}
