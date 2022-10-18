@@ -3,7 +3,7 @@ import { useGlobalContext } from '../context'
 import {BsHandThumbsUp} from 'react-icons/bs'
 
 const Meals = () => {
-  const {loading, meals} = useGlobalContext()
+  const {loading, meals, selectMeal} = useGlobalContext()
   
   if (loading){
     return <section className='section'>
@@ -23,8 +23,9 @@ const Meals = () => {
       {meals.map((singleMeal)=>{
         const {idMeal, strMeal: title, strMealThumb: image} = singleMeal
 
+// onClick={selectMeal(idMeal)} putting this directly in img runs 25 times(length of meals array)
         return <article className='single-meal' key={idMeal}>
-          <img src={image} className="img" alt={title}/>
+          <img src={image} className="img" alt={title} onClick={() => selectMeal(idMeal)}/>
           <footer>
             <h5>{title}</h5>
             <button className='like-btn'><BsHandThumbsUp/></button>

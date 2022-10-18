@@ -11,11 +11,16 @@ export const AppProvider = ({children}) => {
     const [meals, setMeals] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
 
+    const [showModal, setShowModal] = useState(false)
+
+    const [selectedMeal, setSelectedMeal] = useState(null)
+
+
 
     const randomMealsUrl = 'https://www.themealdb.com/api/json/v1/1/random.php#'
     const allMealsUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 
-    const [showModal, setShowModal] = useState(true)
+    
 
     //fetchMeal
 
@@ -42,6 +47,17 @@ export const AppProvider = ({children}) => {
         // setSearchTerm('')
     }
 
+    //selectMeal
+
+    const selectMeal = (idMeal, favouriteMeal) => {
+        console.log(idMeal)
+        let meal
+        meal = meals.find((meal) => meal.id === idMeal)
+        setSelectedMeal(meal)
+        setShowModal(true)
+
+    }
+
 //bug: when we set SetSearchTerm to empty still it makes request as a empty searchterm when we do Surprise because we 
 //     have searchTerm as dependency is useEffect.
 
@@ -59,7 +75,7 @@ export const AppProvider = ({children}) => {
 
 
     return (
-        <AppContext.Provider value={{ loading, meals, setSearchTerm, fetchRandomMeal , showModal}}>
+        <AppContext.Provider value={{ loading, meals, setSearchTerm, fetchRandomMeal , showModal, selectMeal, selectedMeal}}>
             {children}
         </AppContext.Provider>
     )
