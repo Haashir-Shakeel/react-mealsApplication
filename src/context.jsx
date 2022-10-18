@@ -15,7 +15,9 @@ export const AppProvider = ({children}) => {
     const randomMealsUrl = 'https://www.themealdb.com/api/json/v1/1/random.php#'
     const allMealsUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s='
 
-    //fetchSearchedMeal
+    const [showModal, setShowModal] = useState(true)
+
+    //fetchMeal
 
     const fetchMeal =async (url) => {
         setLoading(true)
@@ -42,7 +44,7 @@ export const AppProvider = ({children}) => {
 
 //bug: when we set SetSearchTerm to empty still it makes request as a empty searchterm when we do Surprise because we 
 //     have searchTerm as dependency is useEffect.
- 
+
 //solution: first time app loads fetch all meals, after make a check whether we have search term then do search otherwise
 //          return 
     useEffect(()=>{
@@ -57,7 +59,7 @@ export const AppProvider = ({children}) => {
 
 
     return (
-        <AppContext.Provider value={{ loading, meals, setSearchTerm, fetchRandomMeal }}>
+        <AppContext.Provider value={{ loading, meals, setSearchTerm, fetchRandomMeal , showModal}}>
             {children}
         </AppContext.Provider>
     )
