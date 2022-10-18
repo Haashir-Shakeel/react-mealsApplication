@@ -51,11 +51,14 @@ export const AppProvider = ({children}) => {
 
     const selectMeal = (idMeal, favouriteMeal) => {
         console.log(idMeal)
-        let meal
-        meal = meals.find((meal) => meal.id === idMeal)
+        let meal = meals.find((meal)=>meal.idMeal === idMeal)
         setSelectedMeal(meal)
         setShowModal(true)
 
+    }
+
+    const closeModal = () => {
+        setShowModal(false)
     }
 
 //bug: when we set SetSearchTerm to empty still it makes request as a empty searchterm when we do Surprise because we 
@@ -75,7 +78,8 @@ export const AppProvider = ({children}) => {
 
 
     return (
-        <AppContext.Provider value={{ loading, meals, setSearchTerm, fetchRandomMeal , showModal, selectMeal, selectedMeal}}>
+        <AppContext.Provider value={{ loading, meals, setSearchTerm, fetchRandomMeal ,
+         showModal, selectMeal, selectedMeal, closeModal}}>
             {children}
         </AppContext.Provider>
     )

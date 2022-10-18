@@ -23,7 +23,9 @@ const Meals = () => {
       {meals.map((singleMeal)=>{
         const {idMeal, strMeal: title, strMealThumb: image} = singleMeal
 
-// onClick={selectMeal(idMeal)} putting this directly in img runs 25 times(length of meals array)
+//bug: onClick={selectMeal(idMeal)} putting this directly in img runs 25 times(length of meals array)
+//solution: using arrow function :- onClick={() => selectMeal(idMeal)}
+
         return <article className='single-meal' key={idMeal}>
           <img src={image} className="img" alt={title} onClick={() => selectMeal(idMeal)}/>
           <footer>
