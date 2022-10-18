@@ -37,11 +37,25 @@ export const AppProvider = ({children}) => {
 
     const fetchRandomMeal = () =>{
         fetchMeal(randomMealsUrl)
+        // setSearchTerm('')
     }
 
+//bug: when we set SetSearchTerm to empty still it makes request as a empty searchterm when we do Surprise because we 
+//     have searchTerm as dependency is useEffect.
+ 
+//solution: first time app loads fetch all meals, after make a check whether we have search term then do search otherwise
+//          return 
     useEffect(()=>{
+        fetchMeal(allMealsUrl)
+    },[])
+
+    useEffect(()=>{
+        if (!searchTerm) return
+
         fetchMeal(`${allMealsUrl}${searchTerm}`)
     },[searchTerm])
+
+
     return (
         <AppContext.Provider value={{ loading, meals, setSearchTerm, fetchRandomMeal }}>
             {children}
