@@ -8,13 +8,14 @@ const Modals = () => {
   return (
     <aside className='modal-overlay'>
       <div className='modal-container'>
-        <img src={image} alt={title}/>
-        <div className="modal-content"></div>
+        <img src={image} alt={title} className="img modal-img"/>
+        <div className="modal-content">
         <h4>{title}</h4>
         <p>Cooking Instructions</p> 
         <p>{text}</p>
         <a href={source} target="_blank">Original Source</a>
-        <button onClick={closeModal}>Close</button>
+        <button className='btn btn-hipster close-btn' onClick={closeModal}>Close</button>
+        </div>
         </div>  
     </aside>
   )
