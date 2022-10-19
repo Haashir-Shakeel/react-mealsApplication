@@ -3,7 +3,7 @@ import { useGlobalContext } from '../context'
 import {BsHandThumbsUp} from 'react-icons/bs'
 
 const Meals = () => {
-  const {loading, meals, selectMeal} = useGlobalContext()
+  const {loading, meals, selectMeal, addToFavourites} = useGlobalContext()
   
   if (loading){
     return <section className='section'>
@@ -26,11 +26,13 @@ const Meals = () => {
 //bug: onClick={selectMeal(idMeal)} putting this directly in img runs 25 times(length of meals array)
 //solution: using arrow function :- onClick={() => selectMeal(idMeal)}
 
+//same with addToFavourites
+
         return <article className='single-meal' key={idMeal}>
           <img src={image} className="img" alt={title} onClick={() => selectMeal(idMeal)}/>
           <footer>
             <h5>{title}</h5>
-            <button className='like-btn'><BsHandThumbsUp/></button>
+            <button className='like-btn' onClick={() => addToFavourites(idMeal)}><BsHandThumbsUp/></button>
           </footer>
           </article>
       })}
