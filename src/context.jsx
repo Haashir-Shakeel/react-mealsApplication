@@ -80,7 +80,7 @@ export const AppProvider = ({children}) => {
 
     //removefavourite
     const removeFromFavourites = (idMeal) => {
-        const updatedFavourites = favourites.find((meal)=> meal.idMeal !== idMeal)
+        const updatedFavourites = favourites.filter((meal)=> meal.idMeal !== idMeal)
         setFavourites(updatedFavourites)
     }
 
@@ -103,7 +103,7 @@ export const AppProvider = ({children}) => {
 
     return (
         <AppContext.Provider value={{ loading, meals, setSearchTerm, fetchRandomMeal ,
-         showModal, selectMeal, selectedMeal, closeModal, addToFavourites, removeFromFavourites}}>
+         showModal, selectMeal, selectedMeal, closeModal, favourites, addToFavourites, removeFromFavourites,}}>
             {children}
         </AppContext.Provider>
     )
