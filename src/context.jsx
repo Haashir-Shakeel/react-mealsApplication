@@ -50,9 +50,17 @@ export const AppProvider = ({children}) => {
 
     //selectMeal
 
+    //select meal when to be called from Favourites should look into Favourites array instead of meals
+    // because when we are on surprise meal, array mightnot contain that favourite item 
     const selectMeal = (idMeal, favouriteMeal) => {
-        console.log(idMeal)
-        let meal = meals.find((meal)=>meal.idMeal === idMeal)
+        let meal
+        if (favouriteMeal){
+            meal = favourites.find((meal)=>meal.idMeal === idMeal)
+        }
+        else{
+            meal = meals.find((meal)=>meal.idMeal === idMeal)
+        }
+        
         setSelectedMeal(meal)
         setShowModal(true)
 
@@ -69,7 +77,6 @@ export const AppProvider = ({children}) => {
     //addfavourite:
 
     const addToFavourites = (idMeal) => {
-        console.log(idMeal)
         const alreadyFavourite = favourites.find((meal)=> meal.idMeal === idMeal)
         if (alreadyFavourite) return
         const newFavourite = meals.find((meal)=> meal.idMeal === idMeal)
