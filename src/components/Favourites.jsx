@@ -8,6 +8,7 @@ const Favourites = () => {
       <h5>Favourites</h5>
       <div className="favourites-container">
         {favourites.map((item)=> {
+          // destructuring item from favourites 
           const {idMeal, strMealThumb: image, strMeal: title} = item
           return <div key={idMeal} className="favourites-item">
             <img src={image} alt={title} className="favourites-img img" onClick={()=> selectMeal(idMeal, true)}/>

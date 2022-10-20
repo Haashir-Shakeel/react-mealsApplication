@@ -7,14 +7,13 @@ import { useGlobalContext } from './context';
 
 function App() {
   const {showModal, favourites} = useGlobalContext()
-  console.log(favourites.length);
 
   return (
     <main>
       <Search/>
       {/* rendering favourites only when we have favourites */}
       
-      {(favourites.length > 0) && <Favourites/> } 
+      {(favourites.length > 0) && <Favourites /> } 
       <Meals/>
       {/* rendering modal fonly when someone clicks */}
       {showModal && <Modals/>}

@@ -11,6 +11,7 @@ const Meals = () => {
     </section>
   }
 
+  // if meals array is empty
   if (meals.length < 1){
     return <section className='section'>
     <h4>No Meals matched your searched term. Please try again.</h4>
@@ -21,6 +22,7 @@ const Meals = () => {
 
     <section className='section-center'>
       {meals.map((singleMeal)=>{
+        //destructuring singleMeal from meals array
         const {idMeal, strMeal: title, strMealThumb: image} = singleMeal
 
 //bug: onClick={selectMeal(idMeal)} putting this directly in img runs 25 times(length of meals array)
